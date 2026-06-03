@@ -1,8 +1,4 @@
-// PromptVault Interactive App Core
-// Orchestrates theme states, prompt rendering, dynamic filters, copy actions, and mindmap timelines.
-
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialize Core Services
   initThemeManager();
   initToolDirectory();
   initPromptLibrary();
@@ -11,20 +7,16 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollAnimations();
   initMobileNav();
 });
-
-/* ==========================================================================
-   1. Theme Management (Light/Dark Switch)
-   ========================================================================== */
 function initThemeManager() {
   const toggleBtn = document.getElementById("theme-toggle");
   if (!toggleBtn) return;
 
-  // Retrieve existing preferences or default to OS preference
+  
   const savedTheme = localStorage.getItem("promptvault-theme");
   const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
 
-  // Apply initial theme
+  
   document.documentElement.setAttribute("data-theme", initialTheme);
 
   toggleBtn.addEventListener("click", () => {
@@ -34,7 +26,6 @@ function initThemeManager() {
     document.documentElement.setAttribute("data-theme", nextTheme);
     localStorage.setItem("promptvault-theme", nextTheme);
     
-    // Animate theme switch via temporary transition override
     document.body.style.transition = "background-color 0.5s ease, color 0.5s ease";
     setTimeout(() => {
       document.body.style.transition = "";
@@ -42,9 +33,7 @@ function initThemeManager() {
   });
 }
 
-/* ==========================================================================
-   2. AI Tool Directory (Filtering & Rendering)
-   ========================================================================== */
+
 function initToolDirectory() {
   const directoryGrid = document.getElementById("directory-grid");
   const filterContainer = document.getElementById("directory-filters");
@@ -53,7 +42,6 @@ function initToolDirectory() {
   const tools = PromptVaultData.tools;
   let activeFilter = "all";
 
-  // Render Category Filter Buttons dynamically
   const categories = ["all", ...new Set(tools.map(t => t.category))];
   filterContainer.innerHTML = categories.map(cat => `
     <button class="filter-btn ${cat === activeFilter ? 'active' : ''}" data-category="${cat}">
@@ -61,15 +49,13 @@ function initToolDirectory() {
     </button>
   `).join("");
 
-  // Initial render
   renderTools(tools, activeFilter);
 
-  // Bind click handlers
+
   filterContainer.addEventListener("click", (e) => {
     const btn = e.target.closest(".filter-btn");
     if (!btn) return;
 
-    // Update active states
     filterContainer.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
 
@@ -82,7 +68,6 @@ function renderTools(tools, filter) {
   const grid = document.getElementById("directory-grid");
   if (!grid) return;
 
-  // Filter tools
   const filteredTools = filter === "all" ? tools : tools.filter(t => t.category === filter);
 
   grid.innerHTML = filteredTools.map(tool => {
@@ -121,13 +106,9 @@ function renderTools(tools, filter) {
     `;
   }).join("");
 
-  // Re-trigger scroll observer for new items
   observeElements();
 }
 
-/* ==========================================================================
-   3. Student Prompt Library (Tabs & Dynamic Content)
-   ========================================================================== */
 function initPromptLibrary() {
   const tabsList = document.getElementById("library-tabs");
   const canvasWrapper = document.getElementById("library-canvas-content");
@@ -135,7 +116,6 @@ function initPromptLibrary() {
 
   const promptsData = PromptVaultData.prompts;
   
-  // Set up categories mapping
   const categoryMeta = {
     study: { name: "Study Skills", desc: "Supercharge your classes, textbooks, and active recall study systems." },
     dsa: { name: "DSA Mastery", desc: "Solve tough algorithms and data structures questions using guided feedback." },
@@ -151,7 +131,6 @@ function initPromptLibrary() {
   const categories = Object.keys(promptsData);
   let activeTab = "study";
 
-  // Render Tabs
   tabsList.innerHTML = categories.map(cat => `
     <li>
       <button class="tab-item-btn ${cat === activeTab ? 'active' : ''}" data-tab="${cat}">
@@ -161,10 +140,8 @@ function initPromptLibrary() {
     </li>
   `).join("");
 
-  // Initial render
   renderPromptCanvas(activeTab, promptsData[activeTab], categoryMeta[activeTab]);
 
-  // Bind click handlers
   tabsList.addEventListener("click", (e) => {
     const btn = e.target.closest(".tab-item-btn");
     if (!btn) return;
@@ -174,7 +151,6 @@ function initPromptLibrary() {
 
     activeTab = btn.dataset.tab;
     
-    // Smooth fade transition for the canvas content
     canvasWrapper.style.opacity = 0;
     setTimeout(() => {
       renderPromptCanvas(activeTab, promptsData[activeTab], categoryMeta[activeTab]);
@@ -182,7 +158,6 @@ function initPromptLibrary() {
     }, 200);
   });
 
-  // Global event delegation for copy buttons
   canvasWrapper.addEventListener("click", (e) => {
     const copyBtn = e.target.closest(".copy-prompt-btn");
     if (!copyBtn) return;
@@ -239,13 +214,9 @@ function renderPromptCanvas(categoryKey, prompts, meta) {
     </div>
   `;
 
-  // Re-trigger scroll observer for new items
   observeElements();
 }
 
-/* ==========================================================================
-   4. AI Workflows Mind-map Diagram Engine
-   ========================================================================== */
 function initWorkflowEngine() {
   const menuContainer = document.getElementById("workflow-menu");
   const stage = document.getElementById("workflow-display-stage");
@@ -254,17 +225,14 @@ function initWorkflowEngine() {
   const workflows = PromptVaultData.workflows;
   let activeWfId = workflows[0].id;
 
-  // Render Workflow menu items
   menuContainer.innerHTML = workflows.map(wf => `
     <button class="workflow-menu-btn ${wf.id === activeWfId ? 'active' : ''}" data-workflow-id="${wf.id}">
       ${wf.title}
     </button>
   `).join("");
 
-  // Initial render
   renderWorkflow(workflows.find(w => w.id === activeWfId));
 
-  // Bind click handlers
   menuContainer.addEventListener("click", (e) => {
     const btn = e.target.closest(".workflow-menu-btn");
     if (!btn) return;
@@ -275,7 +243,6 @@ function initWorkflowEngine() {
     activeWfId = btn.dataset.workflowId;
     const targetWf = workflows.find(w => w.id === activeWfId);
 
-    // Slide transition for workflow content
     stage.style.opacity = 0;
     setTimeout(() => {
       renderWorkflow(targetWf);
@@ -288,7 +255,6 @@ function renderWorkflow(wf) {
   const stage = document.getElementById("workflow-display-stage");
   if (!stage) return;
 
-  // Construct steps HTML
   const stepsHTML = wf.steps.map((step, idx) => `
     <div class="workflow-node-item scroll-reveal delay-${idx + 1}" id="wf-step-${idx}">
       <span class="node-role-badge">${step.role}</span>
@@ -329,7 +295,6 @@ function renderWorkflow(wf) {
     </div>
   `;
 
-  // Bind simulation trigger
   const runBtn = stage.querySelector("#run-wf-sim");
   runBtn.addEventListener("click", () => {
     runWorkflowSimulation(wf.steps);
@@ -348,7 +313,6 @@ function runWorkflowSimulation(steps) {
   runBtn.disabled = true;
   runBtn.textContent = "Running Simulation...";
   
-  // Reset visual states
   steps.forEach((_, idx) => {
     const el = document.getElementById(`wf-step-${idx}`);
     if (el) el.classList.remove("sim-active", "sim-done");
@@ -377,14 +341,12 @@ function runWorkflowSimulation(steps) {
       currentStep++;
       setTimeout(nextStep, 1800);
     } else {
-      // Mark last step done
       const lastEl = document.getElementById(`wf-step-${steps.length - 1}`);
       if (lastEl) {
         lastEl.classList.remove("sim-active");
         lastEl.classList.add("sim-done");
       }
       
-      // Light up results
       resultBox.classList.add("sim-success");
       logDiv.textContent = "🎉 Pipeline success! Outputs successfully generated.";
       
@@ -402,9 +364,7 @@ function runWorkflowSimulation(steps) {
   nextStep();
 }
 
-/* ==========================================================================
-   5. Scroll Animations (IntersectionObserver)
-   ========================================================================== */
+
 function initScrollAnimations() {
   observeElements();
 }
@@ -416,7 +376,7 @@ function observeElements() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("revealed");
-        // Keep elements revealed once visible to make scrolling smoother
+        
         observer.unobserve(entry.target);
       }
     });
@@ -428,9 +388,7 @@ function observeElements() {
   elements.forEach(el => observer.observe(el));
 }
 
-/* ==========================================================================
-   6. Navigation Interactions
-   ========================================================================== */
+
 function initMobileNav() {
   const toggleBtn = document.getElementById("mobile-toggle");
   const navLinks = document.getElementById("nav-links");
@@ -442,7 +400,6 @@ function initMobileNav() {
     toggleBtn.classList.toggle("active");
   });
 
-  // Close nav on link click
   navLinks.addEventListener("click", (e) => {
     if (e.target.tagName === "A") {
       navLinks.classList.remove("active");
@@ -451,9 +408,8 @@ function initMobileNav() {
   });
 }
 
-/* ==========================================================================
-   7. SVG Icon Sprite Repository
-   ========================================================================== */
+
+   
 function getSVGIcon(key) {
   const icons = {
     claude: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.14 7.42l-5.63-3.25a2.76 2.76 0 00-2.76 0L5.12 7.42a2.76 2.76 0 00-1.38 2.39v6.5a2.76 2.76 0 001.38 2.39l5.63 3.25a2.76 2.76 0 002.76 0l5.63-3.25a2.76 2.76 0 001.38-2.39v-6.5a2.76 2.76 0 00-1.38-2.39zM12 20.35l-5.63-3.25V10.6L12 7.35l5.63 3.25v6.5z"/></svg>`,
@@ -472,9 +428,7 @@ function getSVGIcon(key) {
   return icons[key] || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>`;
 }
 
-/* ==========================================================================
-   8. Specific Category Icons for Notebook Tabs
-   ========================================================================== */
+
 function getTabIcon(category) {
   const icons = {
     study: `🎓`,
@@ -490,9 +444,7 @@ function getTabIcon(category) {
   return icons[category] || `📝`;
 }
 
-/* ==========================================================================
-   9. Helper Utilities
-   ========================================================================== */
+
 function escapeHTML(str) {
   return str.replace(/[&<>'"]/g, 
     tag => ({
@@ -505,9 +457,7 @@ function escapeHTML(str) {
   );
 }
 
-/* ==========================================================================
-   10. Interactive Formula Deck System
-   ========================================================================== */
+
 function initFormulaInteractive() {
   const formulaBlock = document.getElementById("formula-interactive-container");
   if (!formulaBlock) return;
@@ -562,7 +512,6 @@ function initFormulaInteractive() {
   function renderInteractiveFormula() {
     const activeStep = formulaSteps[currentStepIdx];
     
-    // Render steps list
     const stepsHTML = formulaSteps.map((step, idx) => `
       <button class="formula-node-btn ${idx === currentStepIdx ? 'active' : ''}" data-step-idx="${idx}">
         <span class="step-num">${step.num}</span>
@@ -598,7 +547,6 @@ function initFormulaInteractive() {
       </div>
     `;
 
-    // Add click listeners to tabs
     formulaBlock.querySelectorAll(".formula-node-btn").forEach(btn => {
       btn.addEventListener("click", (e) => {
         const targetBtn = e.currentTarget;
