@@ -1,11 +1,3 @@
-/* ==========================================================================
-   PROMPTVAULT DESIGN SYSTEM & STYLESHEET
-   Aesthetics: Handcrafted Digital Journal / Modern Premium Startup Page
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   1. Fonts and Baseline Reset
-   -------------------------------------------------------------------------- */
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 *, *::before, *::after {
@@ -22,7 +14,6 @@ html {
 }
 
 :root {
-  /* Colors - Light Theme (Warm Digital Journal) */
   --bg-color: #F8F5EF;            /* Warm Paper White */
   --bg-grid: #EFE8DD;            /* Warm Beige Accent / Grid line */
   --border-color: #D3CAB8;       /* Notebook Border */
@@ -40,7 +31,7 @@ html {
   --ruled-line: rgba(85, 107, 47, 0.06); /* Lined paper color */
   --margin-line: rgba(238, 93, 67, 0.35); /* Red notebook margin line */
   
-  /* Layout Constants */
+  
   --font-serif: 'Lora', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-mono: 'Fira Code', monospace;
@@ -52,7 +43,7 @@ html {
   --transition-bounce: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Dark Theme Variables (Slate Journal) */
+
 [data-theme="dark"] {
   --bg-color: #161815;            /* Dark Slate Cover */
   --bg-grid: #232521;            /* Dark Slate Accent Grid */
@@ -83,7 +74,6 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   transition: var(--transition-smooth);
-  /* Custom subtle paper fiber pattern */
   background-image: 
     radial-gradient(var(--bg-grid) 1px, transparent 0),
     radial-gradient(var(--bg-grid) 1px, transparent 0);
@@ -91,9 +81,7 @@ body {
   background-position: 0 0, 12px 12px;
 }
 
-/* --------------------------------------------------------------------------
-   2. Typography & Layout Utilities
-   -------------------------------------------------------------------------- */
+
 h1, h2, h3, h4, h5 {
   font-family: var(--font-serif);
   font-weight: 700;
@@ -135,11 +123,9 @@ a {
   }
 }
 
-/* --------------------------------------------------------------------------
-   3. Custom Notebook Handcrafted Aesthetics
-   -------------------------------------------------------------------------- */
 
-/* Lined Ruled Paper Texture */
+
+
 .ruled-paper {
   background-color: var(--card-bg);
   background-image: linear-gradient(var(--ruled-line) 1px, transparent 1px);
@@ -153,7 +139,6 @@ a {
   transition: var(--transition-smooth);
 }
 
-/* Grid Paper Texture */
 .grid-paper {
   background-color: var(--card-bg);
   background-image: 
@@ -166,7 +151,6 @@ a {
   transition: var(--transition-smooth);
 }
 
-/* Sketch Hand-drawn Borders */
 .sketch-card {
   border: var(--sketch-border);
   border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; /* Organic roundness */
@@ -180,7 +164,6 @@ a {
   box-shadow: 8px 8px 0px var(--accent-olive);
 }
 
-/* Sticky notes */
 .sticky-note {
   background-color: var(--sticky-yellow);
   color: var(--sticky-text);
@@ -200,7 +183,7 @@ a {
   left: 30%;
   right: 30%;
   height: 18px;
-  background: rgba(85, 107, 47, 0.12); /* Mimics washi tape */
+  background: rgba(85, 107, 47, 0.12); 
   transform: translateY(-50%) rotate(0.5deg);
   backdrop-filter: blur(1px);
 }
@@ -219,7 +202,6 @@ a {
   background: rgba(238, 93, 67, 0.15);
 }
 
-/* Notebook Binding Spiral Wire Visual */
 .spiral-binder {
   position: absolute;
   left: 20px;
@@ -248,7 +230,6 @@ a {
   border: 1px solid #1E1E1E;
 }
 
-/* Handwritten Highlight Effect */
 .highlight-yellow {
   position: relative;
   display: inline-block;
@@ -269,7 +250,6 @@ a {
   transition: var(--transition-smooth);
 }
 
-/* Handdrawn Doodle SVGs */
 .doodle-svg {
   position: absolute;
   pointer-events: none;
@@ -281,9 +261,7 @@ a {
   transition: var(--transition-smooth);
 }
 
-/* --------------------------------------------------------------------------
-   4. Header & Navigation
-   -------------------------------------------------------------------------- */
+
 header {
   position: sticky;
   top: 0;
@@ -360,7 +338,6 @@ header {
   gap: 1.5rem;
 }
 
-/* Premium Dark Mode Toggle Button */
 .theme-toggle-btn {
   background: none;
   border: 1px solid var(--border-color);
@@ -402,7 +379,6 @@ header {
   display: block;
 }
 
-/* Mobile Menu Toggle */
 .mobile-nav-toggle {
   display: none;
   background: none;
@@ -436,9 +412,7 @@ header {
   }
 }
 
-/* --------------------------------------------------------------------------
-   5. Buttons & Elements
-   -------------------------------------------------------------------------- */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -480,9 +454,7 @@ header {
   background-color: var(--accent-olive-light);
 }
 
-/* --------------------------------------------------------------------------
-   6. Hero Section (Digital Notebook Cover)
-   -------------------------------------------------------------------------- */
+
 .hero {
   min-height: calc(100vh - 5rem);
   display: flex;
@@ -557,7 +529,6 @@ header {
   flex-wrap: wrap;
 }
 
-/* Notebook Cover Mockup Display on Hero Right */
 .hero-book-container {
   display: flex;
   justify-content: center;
@@ -587,7 +558,6 @@ header {
   box-shadow: 16px 24px 0px var(--text-main);
 }
 
-/* Cover details */
 .notebook-cover-visual::before {
   content: "";
   position: absolute;
@@ -629,9 +599,6 @@ header {
   opacity: 0.85;
 }
 
-/* --------------------------------------------------------------------------
-   7. Why I Built This (My Journey)
-   -------------------------------------------------------------------------- */
 .journey-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -656,7 +623,6 @@ header {
   font-size: 1.1rem;
 }
 
-/* Student ID Builder Card */
 .student-id-card {
   width: 100%;
   max-width: 380px;
@@ -705,7 +671,6 @@ header {
   position: relative;
 }
 
-/* Ruled background in ID card */
 .id-body::after {
   content: "";
   position: absolute;
@@ -779,9 +744,6 @@ header {
   margin-top: 0.1rem;
 }
 
-/* --------------------------------------------------------------------------
-   8. What is Prompt Engineering
-   -------------------------------------------------------------------------- */
 .prompt-what-grid {
   display: grid;
   grid-template-columns: 1fr 1.1fr;
@@ -834,7 +796,6 @@ header {
   margin-bottom: 0.25rem;
 }
 
-/* Interactive Before-and-After Prompt Card */
 .before-after-container {
   display: flex;
   flex-direction: column;
@@ -920,9 +881,7 @@ header {
   z-index: 5;
 }
 
-/* --------------------------------------------------------------------------
-   9. The Prompt Formula
-   -------------------------------------------------------------------------- */
+
 .formula-block {
   background-color: var(--card-bg);
   border-radius: 12px;
@@ -991,7 +950,7 @@ header {
   }
 }
 
-/* Notebook Cards Grid for Formula Examples */
+
 .formula-examples-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1051,9 +1010,7 @@ header {
   font-weight: 600;
 }
 
-/* --------------------------------------------------------------------------
-   10. AI Tool Directory
-   -------------------------------------------------------------------------- */
+
 .directory-header {
   text-align: center;
   max-width: 700px;
@@ -1227,9 +1184,7 @@ header {
   color: var(--accent-coral);
 }
 
-/* --------------------------------------------------------------------------
-   11. Student Prompt Library (Notebook Tabbed Layout)
-   -------------------------------------------------------------------------- */
+
 .library-header {
   text-align: center;
   max-width: 700px;
@@ -1241,7 +1196,7 @@ header {
   margin-bottom: 1rem;
 }
 
-/* Notebook Spiral container layout for library */
+
 .notebook-container {
   display: grid;
   grid-template-columns: 260px 1fr;
@@ -1260,7 +1215,6 @@ header {
   }
 }
 
-/* Left margin spirals (hidden on mobile layout) */
 .notebook-spirals-side {
   position: absolute;
   left: 250px;
@@ -1287,7 +1241,6 @@ header {
   }
 }
 
-/* Left Index Tabs of Notebook */
 .notebook-tabs {
   background-color: var(--bg-grid);
   border-right: 3px solid var(--text-main);
@@ -1358,7 +1311,6 @@ header {
   }
 }
 
-/* Right Content Canvas of Notebook */
 .notebook-canvas {
   padding: 4rem;
   overflow-y: auto;
@@ -1371,7 +1323,6 @@ header {
   }
 }
 
-/* Canvas Ruled background rules */
 .notebook-canvas::after {
   content: "";
   position: absolute;
@@ -1446,7 +1397,6 @@ header {
   border: 1px dashed rgba(238, 93, 67, 0.2);
 }
 
-/* Code area with copy option */
 .prompt-code-container {
   position: relative;
   margin-top: 1.5rem;
@@ -1467,7 +1417,6 @@ header {
   overflow-y: auto;
 }
 
-/* Custom scrollbars inside notebook code blocks */
 .prompt-pre-block::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -1534,9 +1483,7 @@ header {
   display: block;
 }
 
-/* --------------------------------------------------------------------------
-   12. AI Workflows (Doodle mind-maps)
-   -------------------------------------------------------------------------- */
+
 .workflows-header {
   text-align: center;
   max-width: 700px;
@@ -1584,7 +1531,6 @@ header {
   border-radius: 2px;
 }
 
-/* Workflow Stage Visual Container */
 .workflow-stage {
   max-width: 900px;
   margin: 0 auto;
@@ -1618,7 +1564,6 @@ header {
   font-size: 1rem;
 }
 
-/* Linear step-by-step nodes mapping */
 .workflow-nodes-container {
   display: flex;
   justify-content: space-between;
@@ -1635,7 +1580,6 @@ header {
   }
 }
 
-/* SVG Line Connector for nodes */
 .workflow-line-svg {
   position: absolute;
   top: 2.5rem;
@@ -1671,7 +1615,6 @@ header {
   }
 }
 
-/* Individual node blocks */
 .workflow-node-item {
   width: 25%;
   min-width: 180px;
@@ -1736,7 +1679,6 @@ header {
   padding: 0 0.5rem;
 }
 
-/* Big Gold Banner for Result Output */
 .workflow-result-box {
   background-color: var(--accent-olive-light);
   border: 2px dashed var(--accent-olive);
@@ -1773,9 +1715,7 @@ header {
   color: var(--accent-olive-dark);
 }
 
-/* --------------------------------------------------------------------------
-   13. Professional Student Profile (About Me)
-   -------------------------------------------------------------------------- */
+
 .about-me {
   background-color: var(--bg-grid);
   border-top: 1px dashed var(--border-color);
@@ -1841,7 +1781,6 @@ header {
   fill: currentColor;
 }
 
-/* Floating doodles in about section */
 .about-doodles {
   position: relative;
   display: flex;
@@ -1849,9 +1788,7 @@ header {
   align-items: center;
 }
 
-/* --------------------------------------------------------------------------
-   14. Footer
-   -------------------------------------------------------------------------- */
+
 footer {
   background-color: var(--bg-color);
   padding: 5rem 0 3rem 0;
@@ -1938,9 +1875,7 @@ footer {
   color: var(--text-main);
 }
 
-/* --------------------------------------------------------------------------
-   15. Reveal Scroll Animations using IntersectionObserver
-   -------------------------------------------------------------------------- */
+
 .scroll-reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -1953,7 +1888,7 @@ footer {
   transform: translateY(0);
 }
 
-/* Scale pop animation */
+
 .reveal-scale {
   opacity: 0;
   transform: scale(0.95);
@@ -1966,16 +1901,14 @@ footer {
   transform: scale(1);
 }
 
-/* Delay modifiers */
+
 .delay-1 { transition-delay: 0.15s; }
 .delay-2 { transition-delay: 0.3s; }
 .delay-3 { transition-delay: 0.45s; }
 
-/* ==========================================================================
-   16. Additional Styles & Responsiveness Overrides
-   ========================================================================== */
 
-/* Clickable Tool Directory Links */
+
+
 .tool-link-btn {
   display: inline-flex;
   align-items: center;
@@ -2000,7 +1933,7 @@ footer {
   background-color: var(--accent-olive-light);
 }
 
-/* Dynamic Interactive Formula Deck styling */
+
 .formula-interactive-wrapper {
   display: flex;
   flex-direction: column;
@@ -2243,7 +2176,6 @@ footer {
   transform-origin: center;
 }
 
-/* Mobile Responsiveness Fixing Misalignments */
 @media (max-width: 992px) {
   .hero-book-container {
     margin-top: 2rem;
