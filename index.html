@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="PromptVault - A premium digital notebook for Computer Science students to learn Prompt Engineering, discover advanced AI tools, access active recall prompts, and view modular workflows. Built by Ratnabh Gupta.">
+  <meta name="author" content="Ratnabh Gupta">
+  <title>PromptVaultv</title>
+
+  <!-- Core Design Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       1. HEADER & STICKY NAVIGATION
+       ========================================================================== -->
+  <header>
+    <div class="container navbar">
+      <a href="#" class="logo" id="nav-logo">
+        PROMPT<span>VAULT</span>
+      </a>
+
+      <!-- Mobile Menu Toggle Icon -->
+      <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle Navigation Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Navigation Links -->
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#journey">My Journey</a></li>
+        <li><a href="#prompt-engineering">Prompt Engineering</a></li>
+        <li><a href="#prompt-formula">Formula</a></li>
+        <li><a href="#tool-directory">AI Tools</a></li>
+        <li><a href="#prompt-library">Prompt Library</a></li>
+        <li><a href="#workflows">Workflows</a></li>
+        <li><a href="#about">About Me</a></li>
+      </ul>
+
+      <!-- Theme Controls -->
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Switch Dark Mode/Light Mode Theme">
+          <!-- Moon Icon (Light Theme Active) -->
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <!-- Sun Icon (Dark Theme Active) -->
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================================================
+         2. SECTION 1: HERO (Notebook Cover Design)
+         ========================================================================== -->
+    <section class="hero container" id="home">
+      <div class="hero-wrapper">
+        <div class="hero-content scroll-reveal">
+          <span class="hero-tag">STUDENT BUILDER JOURNAL</span>
+          <h1>PROMPT<span>VAULT</span></h1>
+          <h2 class="hero-sub">The Student's Notebook for AI Tools, Prompt Engineering, and Smarter Learning.</h2>
+          <p class="hero-desc">
+            A curated, open-source collection of advanced prompting frameworks, responsive study templates, and
+            integrated AI workflows discovered during my journey as a Computer Science student.
+          </p>
+          <div class="hero-btns">
+            <a href="#prompt-library" class="btn btn-primary" id="btn-explore">Explore PromptVault</a>
+            <a href="#journey" class="btn btn-secondary" id="btn-journey">Follow My Journey</a>
+          </div>
+
+          <!-- Custom Sketched Arrow Doodle -->
+          <svg class="doodle-svg scroll-reveal delay-2" style="width: 120px; height: 80px; bottom: -90px; right: 80px;"
+            viewBox="0 0 100 60">
+            <path d="M 10 10 C 35 45, 60 50, 85 40" />
+            <path d="M 75 32 L 85 40 L 78 52" />
+          </svg>
+        </div>
+
+        <!-- Cover visual -->
+        <div class="hero-book-container scroll-reveal delay-1">
+          <div class="notebook-cover-visual">
+            <div class="cover-label">
+              <h2>PROMPTVAULT</h2>
+            </div>
+
+            <!-- Spiral visualizer inside cover -->
+            <div class="spiral-binder">
+              <div class="spiral-ring"></div>
+              <div class="spiral-ring"></div>
+              <div class="spiral-ring"></div>
+              <div class="spiral-ring"></div>
+              <div class="spiral-ring"></div>
+              <div class="spiral-ring"></div>
+              <div class="spiral-ring"></div>
+              <div class="spiral-ring"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. SECTION 2: MY JOURNEY (Why I Built PromptVault)
+         ========================================================================== -->
+    <section class="section-padding container" id="journey">
+      <!-- Journey Section Content -->
+
+      <div class="journey-grid">
+        <div class="journey-content scroll-reveal">
+          <span class="hero-tag">THE PROBLEM & THE MISSION</span>
+          <h2>Why I Built PromptVault</h2>
+          <div class="journey-essay">
+            <p>
+              I recently completed an intensive Prompt Engineering course, diving deep into the inner logic of Large
+              Language Models (LLMs), structural parameter alignments, and vector-driven contexts.
+            </p>
+            <p>
+              During this learning process, I realized a core bottleneck: **most college students don't need more AI
+              hype or simple theoretical concepts.**
+            </p>
+            <p>
+              They need **practical, actionable systems**. They need frameworks that turn AI from a simple cheating
+              machine into a rigorous, collaborative Socratic tutor, research peer, and code refactorer.
+            </p>
+            <p>
+              <strong>PromptVault</strong> is my digital notebook. It is my attempt to map, refine, and catalog the
+              exact prompts, tools, and workflows that have helped me learn faster, code cleaner, and build smarter.
+            </p>
+          </div>
+        </div>
+
+        <!-- Student Builder Identity Card -->
+        <div class="scroll-reveal delay-1">
+          <div class="student-id-card">
+            <div class="id-header">
+              <h3>STUDENT BUILDER</h3>
+              <p>ID // PV-2026-CS</p>
+            </div>
+            <div class="id-body">
+              <div class="id-photo-frame">
+                <!-- SVG Kid with Floating Books Sketch -->
+                <svg class="id-photo-svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <!-- Head & Neck -->
+                  <path d="M 50 40 C 43 40, 42 48, 42 53 C 42 60, 46 64, 50 64 C 54 64, 58 60, 58 53 C 58 48, 57 40, 50 40 Z" />
+                  <path d="M 47 64 L 47 70 L 53 70 L 53 64" />
+                  <!-- Shoulders -->
+                  <path d="M 33 80 C 37 73, 40 70, 47 70 L 53 70 C 60 70, 63 73, 67 80 Z" />
+                  <!-- Face details -->
+                  <circle cx="46" cy="50" r="3.5" />
+                  <circle cx="54" cy="50" r="3.5" />
+                  <line x1="49.5" y1="50" x2="50.5" y2="50" />
+                  <path d="M 47 57 Q 50 60 53 57" />
+                  <!-- Hair -->
+                  <path d="M 42 45 Q 38 38 43 35 Q 46 32 50 34 Q 54 32 57 35 Q 62 38 58 45" />
+                  <path d="M 40 43 Q 38 48 42 50" />
+                  <path d="M 60 43 Q 62 48 58 50" />
+                  <!-- Floating Books -->
+                  <g class="floating-book" style="animation: floatBook1 3s ease-in-out infinite;">
+                    <path d="M 12 30 L 22 24 L 20 38 L 10 44 Z" />
+                    <line x1="16" y1="28" x2="14" y2="41" />
+                    <path d="M 23 38 Q 28 42 34 46" stroke-dasharray="2 2" opacity="0.6" />
+                  </g>
+                  <g class="floating-book" style="animation: floatBook2 3.5s ease-in-out infinite; animation-delay: 0.5s;">
+                    <path d="M 76 25 L 88 19 L 85 33 L 73 39 Z" />
+                    <line x1="82" y1="22" x2="79" y2="36" />
+                    <path d="M 71 35 Q 66 40 60 45" stroke-dasharray="2 2" opacity="0.6" />
+                  </g>
+                  <g class="floating-book" style="animation: floatBook3 4s ease-in-out infinite; animation-delay: 1s;">
+                    <path d="M 44 14 L 56 12 L 53 22 L 41 24 Z" />
+                    <line x1="49.5" y1="13" x2="46.5" y2="23" />
+                    <path d="M 50 25 Q 50 30 50 37" stroke-dasharray="2 2" opacity="0.6" />
+                  </g>
+                </svg>
+              </div>
+              <div class="id-details">
+                <h4>Ratnabh Gupta</h4>
+                <p class="university">Poornima University</p>
+                <div class="id-meta-grid">
+                  <div class="meta-field">
+                    <label>Department</label>
+                    <p>CS Engineering</p>
+                  </div>
+                  <div class="meta-field">
+                    <label>Core Focus</label>
+                    <p>AI & Web Dev</p>
+                  </div>
+                  <div class="meta-field">
+                    <label>Language Stack</label>
+                    <p>Py • Java • C++</p>
+                  </div>
+                  <div class="meta-field">
+                    <label>Status</label>
+                    <p>Learning Publicly</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. SECTION 3: WHAT IS PROMPT ENGINEERING (Interactive Notebook)
+         ========================================================================== -->
+    <section class="section-padding container" id="prompt-engineering">
+      <div style="text-align: center; margin-bottom: 5rem;" class="scroll-reveal">
+        <span class="hero-tag">PROMPT ENGINEERING 101</span>
+        <h2>Inside the Prompting Engine</h2>
+        <p style="max-width: 600px; margin: 1rem auto 0 auto;">Prompting isn't about magical phrases; it is standard
+          software engineering using human language. Here is how modern prompts are built.</p>
+      </div>
+
+      <div class="prompt-what-grid">
+        <!-- Ruled notebook page explaining the pillars -->
+        <div class="ruled-paper scroll-reveal">
+          <div class="explanation-ruled">
+            <div class="pillar-bullet">
+              <div class="pillar-num">1</div>
+              <div class="pillar-text">
+                <h4>Role definition</h4>
+                <p>Assign a highly specialized, expert persona. (e.g., "Act as a Senior ATS Recruiter", "Act as a
+                  Socratic Coding Coach"). Sets the tone and parameters of the model.</p>
+              </div>
+            </div>
+
+            <div class="pillar-bullet">
+              <div class="pillar-num">2</div>
+              <div class="pillar-text">
+                <h4>Context mapping</h4>
+                <p>Supply background facts, goals, resources, and limits. The more targeted information you feed, the
+                  sharper the logic boundaries.</p>
+              </div>
+            </div>
+
+            <div class="pillar-bullet">
+              <div class="pillar-num">3</div>
+              <div class="pillar-text">
+                <h4>Core Task</h4>
+                <p>Clearly state what you want the AI to generate, analyze, or rewrite. Keep tasks modular and
+                  execution-focused.</p>
+              </div>
+            </div>
+
+            <div class="pillar-bullet">
+              <div class="pillar-num">4</div>
+              <div class="pillar-text">
+                <h4>Strict Constraints</h4>
+                <p>Construct explicit guardrails: word limits, style guidelines, files to avoid, and algorithms to
+                  utilize.</p>
+              </div>
+            </div>
+
+            <div class="pillar-bullet">
+              <div class="pillar-num">5</div>
+              <div class="pillar-text">
+                <h4>Output Format</h4>
+                <p>Specify the exact structural format of the response: clean markdown tables, raw JSON files, or ASCII
+                  visual flows.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Before and After prompt display -->
+        <div class="before-after-container scroll-reveal delay-1">
+          <!-- Bad Prompt Card -->
+          <div class="sketch-card comparison-card bad">
+            <span class="card-tag">Bad Prompt</span>
+            <h3>Simple Request</h3>
+            <p>Vague, structureless instruction leading to a generic, boilerplate output.</p>
+            <div class="prompt-text-block">
+              "Write a resume"
+            </div>
+          </div>
+
+          <!-- Hand-drawn arrow separator -->
+          <div class="before-after-arrows">
+            <svg style="width: 60px; height: 50px;" viewBox="0 0 60 50">
+              <path class="doodle-svg" d="M 10 10 Q 30 45 50 10" />
+              <path class="doodle-svg" d="M 40 18 L 50 10 L 45 2" />
+            </svg>
+          </div>
+
+          <!-- Good Prompt Card -->
+          <div class="sketch-card comparison-card good">
+            <span class="card-tag">Engineered Prompt</span>
+            <h3>Structured Blueprint</h3>
+            <p>Utilizes role, target audience, measurable STAR constraints, and formatting rules.</p>
+            <div class="prompt-text-block">
+              "Act as an experienced ATS recruiter. Improve my resume for software engineering internship applications
+              while keeping achievements measurable, STAR-focused, and concise."
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. SECTION 4: THE PROMPT FORMULA
+         ========================================================================== -->
+    <section class="section-padding container" id="prompt-formula">
+      <div style="text-align: center; margin-bottom: 5rem;" class="scroll-reveal">
+        <span class="hero-tag">THE REUSABLE FRAMEWORK</span>
+        <h2>The Prompt Formula</h2>
+        <p style="max-width: 600px; margin: 1rem auto 0 auto;">Use this universal sequence to engineer any prompt you
+          write. Click on each step to see how it works in real-time.</p>
+      </div>
+
+      <!-- Interactive Container -->
+      <div id="formula-interactive-container" class="scroll-reveal">
+        <!-- Injected dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. SECTION 5: AI TOOL DIRECTORY
+         ========================================================================== -->
+    <section class="section-padding container" id="tool-directory">
+      <div class="directory-header scroll-reveal">
+        <span class="hero-tag">THE HARDWARE CHEST</span>
+        <h2>AI Tool Directory</h2>
+        <p>A hand-vetted directory of the most useful AI tools for Computer Science students, content creators, and
+          hackathon competitors.</p>
+      </div>
+
+      <!-- Filters menu (populated by app.js) -->
+      <div class="directory-categories scroll-reveal" id="directory-filters">
+        <!-- Buttons will inject here dynamically -->
+      </div>
+
+      <!-- Grid area (populated by app.js) -->
+      <div class="directory-grid" id="directory-grid">
+        <!-- Cards will inject here dynamically -->
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         7. SECTION 6: STUDENT PROMPT LIBRARY (Spiral Notebook Layout)
+         ========================================================================== -->
+    <section class="section-padding container" id="prompt-library">
+      <div class="library-header scroll-reveal">
+        <span class="hero-tag">BATTLE-TESTED SCRIPTS</span>
+        <h2>Student Prompt Library</h2>
+        <p>A curated collection of highly optimized prompting scripts designed to make you work smarter, study faster,
+          and code cleaner. Select a category below to browse prompts.</p>
+      </div>
+
+      <!-- Notebook Binder Layout -->
+      <div class="notebook-container scroll-reveal">
+        <!-- Spiral loops separating left and right canvases -->
+        <div class="notebook-spirals-side">
+          <div class="spiral-ring"></div>
+          <div class="spiral-ring"></div>
+          <div class="spiral-ring"></div>
+          <div class="spiral-ring"></div>
+          <div class="spiral-ring"></div>
+          <div class="spiral-ring"></div>
+          <div class="spiral-ring"></div>
+          <div class="spiral-ring"></div>
+          <div class="spiral-ring"></div>
+          <div class="spiral-ring"></div>
+          <div class="spiral-ring"></div>
+          <div class="spiral-ring"></div>
+          <div class="spiral-ring"></div>
+          <div class="spiral-ring"></div>
+          <div class="spiral-ring"></div>
+        </div>
+
+        <!-- Left Tabs Column -->
+        <ul class="notebook-tabs" id="library-tabs">
+          <!-- Dynamic rendering from data.js -->
+        </ul>
+
+        <!-- Right Ruled Canvas Area -->
+        <div class="notebook-canvas" id="library-canvas-container">
+          <div id="library-canvas-content" style="transition: opacity 0.25s ease;">
+            <!-- Prompts rendering from app.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         8. SECTION 7: AI WORKFLOWS (Mindmap Visualizations)
+         ========================================================================== -->
+    <section class="section-padding container" id="workflows">
+      <div class="workflows-header scroll-reveal">
+        <span class="hero-tag">INTEGRATED PIPELINES</span>
+        <h2>AI Workflows</h2>
+        <p>Single tools are useful, but combining them into cohesive pipelines generates exponential productivity gains.
+          Explore my personal blueprints.</p>
+      </div>
+
+      <!-- Selector Menu -->
+      <div class="workflows-tabs-menu scroll-reveal" id="workflow-menu">
+        <!-- Buttons injected dynamically by app.js -->
+      </div>
+
+      <!-- Mind-map flowchart workspace -->
+      <div id="workflow-display-stage" style="transition: opacity 0.25s ease;">
+        <!-- Flowchart injected dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         9. SECTION 9: ABOUT ME
+         ========================================================================== -->
+    <section class="section-padding about-me" id="about">
+      <div class="container about-me-grid">
+        <div class="about-me-content scroll-reveal">
+          <span class="hero-tag">THE BUILDER STORY</span>
+          <h2>Hi, I'm Ratnabh Gupta</h2>
+          <p>
+            I'm a first-year <strong>Computer Science Engineering student at Poornima University</strong>, exploring
+            software development, AI systems, and creative digital storytelling.
+          </p>
+          <p>
+            PromptVault is part of my core mission to **learn publicly, build useful projects, and help other students**
+            leverage modern AI tools to learn faster and think deeper. My tech stack includes Python, Java, C++, and Web
+            Development.
+          </p>
+
+          <div class="social-links-grid">
+            <a href="https://www.linkedin.com/in/ratnabh-gupta-65a40134a/" target="_blank" rel="noopener noreferrer"
+              class="social-link-btn" id="social-linkedin">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
+              LinkedIn
+            </a>
+            <a href="mailto:ratnabh.gupta@example.com" class="social-link-btn" id="social-email">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 3.956v-7.914l4.623 3.958zm.945 1.158l4.432 3.792 4.434-3.792 5.305 5.913h-19.479l5.308-5.913zm9.809-1.158l4.623-3.958v7.914l-4.623-3.956zm-5.377-2.195l-9.878-8.487h19.756l-9.878 8.487z" />
+              </svg>
+              Email
+            </a>
+          </div>
+        </div>
+
+        <!-- Custom animated doodles right column -->
+        <div class="about-doodles scroll-reveal reveal-scale delay-1">
+          <svg style="width: 250px; height: 250px; fill: none; stroke: var(--text-main); stroke-width: 2;"
+            viewBox="0 0 100 100">
+            <!-- Lightbulb Doodle -->
+            <path
+              d="M 50 20 C 40 20, 35 30, 35 40 C 35 50, 42 55, 45 60 L 45 68 L 55 68 L 55 60 C 58 55, 65 50, 65 40 C 65 30, 60 20, 50 20 Z" />
+            <path d="M 45 74 L 55 74" />
+            <path d="M 47 80 L 53 80" />
+            <!-- Glowing rays -->
+            <line x1="50" y1="10" x2="50" y2="15" />
+            <line x1="25" y1="30" x2="30" y2="33" />
+            <line x1="75" y1="30" x2="70" y2="33" />
+            <line x1="20" y1="50" x2="25" y2="50" />
+            <line x1="80" y1="50" x2="75" y2="50" />
+          </svg>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       10. FOOTER
+       ========================================================================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-top scroll-reveal">
+        <blockquote class="footer-quote">
+          "AI won't replace students. Students who learn to use AI effectively will replace those who don't."
+        </blockquote>
+        <span class="footer-author">// The Core Philosophy</span>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 PromptVault. Built with HTML, CSS & JS. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="https://www.linkedin.com/in/ratnabh-gupta-65a40134a/" target="_blank"
+            rel="noopener noreferrer">LinkedIn</a>
+          <a href="#home">Back to Top</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core Javascript Logic -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

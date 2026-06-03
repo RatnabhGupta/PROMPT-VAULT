@@ -1,0 +1,2327 @@
+/* ==========================================================================
+   PROMPTVAULT DESIGN SYSTEM & STYLESHEET
+   Aesthetics: Handcrafted Digital Journal / Modern Premium Startup Page
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Fonts and Baseline Reset
+   -------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  /* Colors - Light Theme (Warm Digital Journal) */
+  --bg-color: #F8F5EF;            /* Warm Paper White */
+  --bg-grid: #EFE8DD;            /* Warm Beige Accent / Grid line */
+  --border-color: #D3CAB8;       /* Notebook Border */
+  --text-main: #2D2D2D;          /* Graphite Charcoal */
+  --text-muted: #5E5A54;         /* Soft Charcoal */
+  --accent-olive: #556B2F;       /* Olive Green */
+  --accent-olive-dark: #3B4A1F;  /* Dark Olive Green */
+  --accent-olive-light: rgba(85, 107, 47, 0.08);
+  --accent-olive-marker: rgba(85, 107, 47, 0.16);
+  --accent-coral: #EE5D43;       /* Highlight Red/Coral */
+  --card-bg: #FFFFFF;            /* Pure White Card */
+  --sticky-yellow: #FEF9D9;      /* Sticky Note Light Yellow */
+  --sticky-blue: #E8F4F8;        /* Sticky Note Blue */
+  --sticky-text: #333333;
+  --ruled-line: rgba(85, 107, 47, 0.06); /* Lined paper color */
+  --margin-line: rgba(238, 93, 67, 0.35); /* Red notebook margin line */
+  
+  /* Layout Constants */
+  --font-serif: 'Lora', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono: 'Fira Code', monospace;
+  --shadow-sm: 0 4px 6px rgba(45, 45, 45, 0.05);
+  --shadow-md: 0 8px 16px rgba(45, 45, 45, 0.08);
+  --shadow-lg: 0 16px 32px rgba(45, 45, 45, 0.12);
+  --sketch-border: 2px solid var(--text-main);
+  --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Dark Theme Variables (Slate Journal) */
+[data-theme="dark"] {
+  --bg-color: #161815;            /* Dark Slate Cover */
+  --bg-grid: #232521;            /* Dark Slate Accent Grid */
+  --border-color: #383B36;       /* Graphite Border */
+  --text-main: #E4E6E3;          /* Chalk White Ink */
+  --text-muted: #A0A59E;         /* Dusty Chalk */
+  --accent-olive: #8B9E6A;       /* Bright Olive */
+  --accent-olive-dark: #A5B68D;  /* Pale Olive */
+  --accent-olive-light: rgba(139, 158, 106, 0.1);
+  --accent-olive-marker: rgba(139, 158, 106, 0.25);
+  --accent-coral: #F0705A;       /* Neon Coral Chalk */
+  --card-bg: #1F221E;            /* Slate Card BG */
+  --sticky-yellow: #2A2D22;      /* Dark Greenish Sticky */
+  --sticky-blue: #1A2830;        /* Dark Blue Sticky */
+  --sticky-text: #E4E6E3;
+  --ruled-line: rgba(228, 230, 227, 0.04);
+  --margin-line: rgba(240, 112, 90, 0.25);
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.4);
+  --sketch-border: 2px solid var(--text-main);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: var(--transition-smooth);
+  /* Custom subtle paper fiber pattern */
+  background-image: 
+    radial-gradient(var(--bg-grid) 1px, transparent 0),
+    radial-gradient(var(--bg-grid) 1px, transparent 0);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Typography & Layout Utilities
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.25;
+}
+
+p {
+  color: var(--text-muted);
+}
+
+a {
+  color: var(--accent-olive);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+}
+
+.section-padding {
+  padding: 8rem 0;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 5rem 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Custom Notebook Handcrafted Aesthetics
+   -------------------------------------------------------------------------- */
+
+/* Lined Ruled Paper Texture */
+.ruled-paper {
+  background-color: var(--card-bg);
+  background-image: linear-gradient(var(--ruled-line) 1px, transparent 1px);
+  background-size: 100% 2.2rem;
+  line-height: 2.2rem;
+  padding: 2.2rem 2.2rem 2.2rem 4rem !important;
+  position: relative;
+  border-left: 2px solid var(--margin-line);
+  box-shadow: var(--shadow-md);
+  border-radius: 4px;
+  transition: var(--transition-smooth);
+}
+
+/* Grid Paper Texture */
+.grid-paper {
+  background-color: var(--card-bg);
+  background-image: 
+    linear-gradient(var(--ruled-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ruled-line) 1px, transparent 1px);
+  background-size: 20px 20px;
+  box-shadow: var(--shadow-sm);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: var(--transition-smooth);
+}
+
+/* Sketch Hand-drawn Borders */
+.sketch-card {
+  border: var(--sketch-border);
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; /* Organic roundness */
+  box-shadow: 4px 4px 0px var(--text-main);
+  transition: var(--transition-bounce);
+  background-color: var(--card-bg);
+}
+
+.sketch-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0px var(--accent-olive);
+}
+
+/* Sticky notes */
+.sticky-note {
+  background-color: var(--sticky-yellow);
+  color: var(--sticky-text);
+  padding: 2rem;
+  border-radius: 2px;
+  box-shadow: 3px 6px 12px rgba(0,0,0,0.06);
+  position: relative;
+  transform: rotate(-1.5deg);
+  transition: var(--transition-bounce);
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+.sticky-note::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 30%;
+  right: 30%;
+  height: 18px;
+  background: rgba(85, 107, 47, 0.12); /* Mimics washi tape */
+  transform: translateY(-50%) rotate(0.5deg);
+  backdrop-filter: blur(1px);
+}
+
+.sticky-note:hover {
+  transform: rotate(0.5deg) scale(1.02);
+  box-shadow: 5px 12px 20px rgba(0,0,0,0.1);
+}
+
+.sticky-note.blue {
+  background-color: var(--sticky-blue);
+  transform: rotate(2deg);
+}
+
+.sticky-note.blue::before {
+  background: rgba(238, 93, 67, 0.15);
+}
+
+/* Notebook Binding Spiral Wire Visual */
+.spiral-binder {
+  position: absolute;
+  left: 20px;
+  top: 10%;
+  bottom: 10%;
+  width: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.spiral-ring {
+  width: 32px;
+  height: 12px;
+  background: linear-gradient(90deg, #A0A0A0, #EAEAEA, #707070);
+  border-radius: 6px;
+  border: 1px solid #505050;
+  transform: translate(-50%, 0) rotate(-15deg);
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .spiral-ring {
+  background: linear-gradient(90deg, #404040, #909090, #303030);
+  border: 1px solid #1E1E1E;
+}
+
+/* Handwritten Highlight Effect */
+.highlight-yellow {
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+}
+
+.highlight-yellow::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: -4px;
+  right: -4px;
+  height: 60%;
+  background-color: var(--accent-olive-marker);
+  border-radius: 4px;
+  z-index: -1;
+  transform: skewX(-12deg);
+  transition: var(--transition-smooth);
+}
+
+/* Handdrawn Doodle SVGs */
+.doodle-svg {
+  position: absolute;
+  pointer-events: none;
+  stroke: var(--text-main);
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  transition: var(--transition-smooth);
+}
+
+/* --------------------------------------------------------------------------
+   4. Header & Navigation
+   -------------------------------------------------------------------------- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(248, 245, 239, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px dashed var(--border-color);
+  transition: var(--transition-smooth);
+}
+
+[data-theme="dark"] header {
+  background-color: rgba(22, 24, 21, 0.85);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+}
+
+.logo {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo span {
+  font-style: italic;
+  color: var(--accent-olive);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  position: relative;
+  padding: 0.25rem 0;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-olive);
+  transition: var(--transition-smooth);
+}
+
+.nav-links a:hover {
+  color: var(--text-main);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Premium Dark Mode Toggle Button */
+.theme-toggle-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--text-main);
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-bounce);
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--text-main);
+  transform: rotate(20deg) scale(1.1);
+  background-color: var(--bg-grid);
+}
+
+.theme-toggle-btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+.theme-toggle-btn .sun-icon {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle-btn .moon-icon {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle-btn .sun-icon {
+  display: block;
+}
+
+/* Mobile Menu Toggle */
+.mobile-nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-main);
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-toggle {
+    display: block;
+  }
+  
+  .nav-links {
+    position: fixed;
+    top: 5rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-color);
+    flex-direction: column;
+    padding: 3rem;
+    gap: 2rem;
+    transform: translateX(100%);
+    transition: var(--transition-smooth);
+    border-top: 1px dashed var(--border-color);
+  }
+  
+  .nav-links.active {
+    transform: translateX(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Buttons & Elements
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.9rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition-bounce);
+  position: relative;
+}
+
+.btn-primary {
+  background-color: var(--accent-olive);
+  color: #FFFFFF !important;
+  border: 2px solid var(--accent-olive);
+  box-shadow: 3px 3px 0 var(--text-main);
+}
+
+.btn-primary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--text-main);
+  background-color: var(--accent-olive-dark);
+}
+
+.btn-secondary {
+  background: none;
+  color: var(--text-main);
+  border: var(--sketch-border);
+  box-shadow: 3px 3px 0 var(--border-color);
+}
+
+.btn-secondary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--accent-olive);
+  background-color: var(--accent-olive-light);
+}
+
+/* --------------------------------------------------------------------------
+   6. Hero Section (Digital Notebook Cover)
+   -------------------------------------------------------------------------- */
+.hero {
+  min-height: calc(100vh - 5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 0;
+}
+
+.hero-wrapper {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 992px) {
+  .hero-wrapper {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.hero-content {
+  position: relative;
+}
+
+.hero-tag {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--accent-coral);
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  background-color: rgba(238, 93, 67, 0.08);
+  padding: 0.35rem 0.85rem;
+  border-radius: 4px;
+  border: 1px dashed rgba(238, 93, 67, 0.2);
+}
+
+.hero h1 {
+  font-size: 4rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 span {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--accent-olive);
+}
+
+.hero-sub {
+  font-size: 1.4rem;
+  color: var(--text-main);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-serif);
+}
+
+.hero-desc {
+  font-size: 1.05rem;
+  margin-bottom: 2.5rem;
+  max-width: 520px;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Notebook Cover Mockup Display on Hero Right */
+.hero-book-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.notebook-cover-visual {
+  width: 320px;
+  height: 440px;
+  background-color: var(--accent-olive-dark);
+  border-radius: 4px 16px 16px 4px;
+  border: 3px solid var(--text-main);
+  box-shadow: 12px 16px 0px var(--text-main);
+  position: relative;
+  transform: rotate(3deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3rem 2rem;
+  color: #F8F5EF;
+  transition: var(--transition-bounce);
+}
+
+.notebook-cover-visual:hover {
+  transform: rotate(0deg) scale(1.03);
+  box-shadow: 16px 24px 0px var(--text-main);
+}
+
+/* Cover details */
+.notebook-cover-visual::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 20px;
+  width: 2px;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 2px 0 0 rgba(0,0,0,0.3);
+}
+
+.cover-label {
+  background-color: #F8F5EF;
+  border: 2px solid var(--text-main);
+  color: #2D2D2D;
+  padding: 1.5rem;
+  border-radius: 4px;
+  text-align: center;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+  margin-top: 2rem;
+}
+
+.cover-label h2 {
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+
+.cover-label p {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+  color: var(--accent-olive);
+}
+
+.cover-footer {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+/* --------------------------------------------------------------------------
+   7. Why I Built This (My Journey)
+   -------------------------------------------------------------------------- */
+.journey-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .journey-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}
+
+.journey-content h2 {
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+}
+
+.journey-essay p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+/* Student ID Builder Card */
+.student-id-card {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  border: 3px solid var(--text-main);
+  border-radius: 12px;
+  background-color: var(--card-bg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  position: relative;
+  transform: rotate(-1deg);
+  transition: var(--transition-bounce);
+}
+
+.student-id-card:hover {
+  transform: rotate(1deg) scale(1.02);
+}
+
+.id-header {
+  background-color: var(--accent-olive);
+  color: #FFFFFF;
+  padding: 1.5rem;
+  text-align: center;
+  border-bottom: 3px solid var(--text-main);
+}
+
+.id-header h3 {
+  color: #FFFFFF;
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+}
+
+.id-header p {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.id-body {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+}
+
+/* Ruled background in ID card */
+.id-body::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  background-image: linear-gradient(var(--ruled-line) 1px, transparent 1px);
+  background-size: 100% 20px;
+  z-index: 1;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.id-photo-frame {
+  width: 120px;
+  height: 120px;
+  border: 3px solid var(--text-main);
+  background-color: var(--bg-color);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  box-shadow: var(--shadow-sm);
+}
+
+.id-photo-svg {
+  width: 80%;
+  height: 80%;
+  color: var(--accent-olive);
+}
+
+.id-details {
+  width: 100%;
+  text-align: center;
+  z-index: 2;
+}
+
+.id-details h4 {
+  font-size: 1.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.id-details .university {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-coral);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.id-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  text-align: left;
+  border-top: 1px dashed var(--border-color);
+  padding-top: 1rem;
+}
+
+.meta-field label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.meta-field p {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-top: 0.1rem;
+}
+
+/* --------------------------------------------------------------------------
+   8. What is Prompt Engineering
+   -------------------------------------------------------------------------- */
+.prompt-what-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 5rem;
+}
+
+@media (max-width: 992px) {
+  .prompt-what-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}
+
+.explanation-ruled {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pillar-bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  line-height: 1.5rem;
+}
+
+.pillar-num {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  background-color: var(--text-main);
+  color: var(--bg-color);
+  width: 1.8rem;
+  height: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  transition: var(--transition-smooth);
+}
+
+.pillar-bullet:hover .pillar-num {
+  background-color: var(--accent-olive);
+}
+
+.pillar-text h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Interactive Before-and-After Prompt Card */
+.before-after-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.comparison-card {
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.comparison-card.bad {
+  border-color: #E5A9A9;
+  background-color: #FFF5F5;
+  box-shadow: 4px 4px 0px #E5A9A9;
+}
+
+[data-theme="dark"] .comparison-card.bad {
+  background-color: #2D1A1A;
+  border-color: #F0705A;
+  box-shadow: 4px 4px 0px #F0705A;
+}
+
+.comparison-card.good {
+  border-color: #A9D3B5;
+  background-color: #F5FAF6;
+  box-shadow: 4px 4px 0px #A9D3B5;
+}
+
+[data-theme="dark"] .comparison-card.good {
+  background-color: #1A281E;
+  border-color: #8B9E6A;
+  box-shadow: 4px 4px 0px #8B9E6A;
+}
+
+.card-tag {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+}
+
+.bad .card-tag {
+  background-color: #FFF0F0;
+  color: #D94646;
+  border: 1px solid #E5A9A9;
+}
+
+.good .card-tag {
+  background-color: #EBF7EE;
+  color: #2F855A;
+  border: 1px solid #A9D3B5;
+}
+
+.prompt-text-block {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: rgba(255,255,255,0.75);
+  border-radius: 6px;
+  border: 1px dashed var(--border-color);
+  color: #2D2D2D;
+}
+
+[data-theme="dark"] .prompt-text-block {
+  background-color: rgba(0,0,0,0.4);
+  color: var(--text-main);
+}
+
+.before-after-arrows {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -1rem 0;
+  z-index: 5;
+}
+
+/* --------------------------------------------------------------------------
+   9. The Prompt Formula
+   -------------------------------------------------------------------------- */
+.formula-block {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  border: 2px dashed var(--border-color);
+  padding: 4rem 2rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 4rem;
+}
+
+.formula-flow {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.formula-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: var(--bg-color);
+  padding: 1.5rem 2rem;
+  border: 2px solid var(--text-main);
+  border-radius: 8px;
+  min-width: 140px;
+  box-shadow: 3px 3px 0 var(--text-main);
+  transition: var(--transition-bounce);
+}
+
+.formula-node:hover {
+  transform: translateY(-5px);
+  background-color: var(--accent-olive-light);
+  box-shadow: 5px 5px 0 var(--accent-olive);
+}
+
+.formula-node span {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-coral);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.formula-node h4 {
+  font-size: 1.2rem;
+  font-family: var(--font-serif);
+}
+
+.formula-arrow {
+  width: 24px;
+  height: 24px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .formula-flow {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .formula-arrow {
+    transform: rotate(90deg);
+  }
+}
+
+/* Notebook Cards Grid for Formula Examples */
+.formula-examples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+}
+
+.example-card {
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.example-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.example-card-header .cat {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-olive);
+  text-transform: uppercase;
+  background-color: var(--accent-olive-light);
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+}
+
+.example-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.example-card p {
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.example-formula-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  background-color: var(--bg-color);
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px dashed var(--border-color);
+}
+
+.example-formula-breakdown div span {
+  color: var(--accent-coral);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   10. AI Tool Directory
+   -------------------------------------------------------------------------- */
+.directory-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 5rem auto;
+}
+
+.directory-header h2 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.directory-categories {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.filter-btn:hover, .filter-btn.active {
+  border-color: var(--text-main);
+  color: var(--text-main);
+  background-color: var(--bg-grid);
+}
+
+.filter-btn.active {
+  box-shadow: 2px 2px 0 var(--text-main);
+  transform: translate(-1px, -1px);
+}
+
+.directory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+.tool-card {
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 320px;
+  animation: cardFadeIn 0.5s ease forwards;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tool-top {
+  margin-bottom: 2rem;
+}
+
+.tool-header-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+
+.tool-logo-container {
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 8px;
+  border: 2px solid var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-color);
+  box-shadow: 2px 2px 0 var(--text-main);
+}
+
+.tool-logo-container svg {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.tool-utility-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-main);
+  border: 1px solid var(--text-main);
+  background-color: var(--bg-color);
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+}
+
+.tool-name-dev h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.1rem;
+}
+
+.tool-name-dev span {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.tool-description {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.tool-bullet-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-coral);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.tool-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  list-style: none;
+}
+
+.tool-bullets li {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tool-bullets li::before {
+  content: "✏️";
+  font-size: 0.75rem;
+}
+
+.tool-footer-block {
+  border-top: 1px dashed var(--border-color);
+  padding-top: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tool-rating {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.tool-rating span {
+  color: var(--accent-coral);
+}
+
+/* --------------------------------------------------------------------------
+   11. Student Prompt Library (Notebook Tabbed Layout)
+   -------------------------------------------------------------------------- */
+.library-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 5rem auto;
+}
+
+.library-header h2 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+/* Notebook Spiral container layout for library */
+.notebook-container {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 600px;
+  border: 3px solid var(--text-main);
+  border-radius: 12px;
+  background-color: var(--card-bg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  position: relative;
+}
+
+@media (max-width: 992px) {
+  .notebook-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Left margin spirals (hidden on mobile layout) */
+.notebook-spirals-side {
+  position: absolute;
+  left: 250px;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  pointer-events: none;
+  z-index: 10;
+  border-right: 1px dashed var(--border-color);
+}
+
+.notebook-spirals-side .spiral-ring {
+  transform: translate(-50%, 0) rotate(90deg);
+  width: 24px;
+  height: 8px;
+}
+
+@media (max-width: 992px) {
+  .notebook-spirals-side {
+    display: none;
+  }
+}
+
+/* Left Index Tabs of Notebook */
+.notebook-tabs {
+  background-color: var(--bg-grid);
+  border-right: 3px solid var(--text-main);
+  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  list-style: none;
+}
+
+@media (max-width: 992px) {
+  .notebook-tabs {
+    border-right: none;
+    border-bottom: 3px solid var(--text-main);
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 1.5rem;
+  }
+}
+
+.tab-item-btn {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 1px solid transparent;
+  padding: 0.85rem 1.25rem;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: var(--transition-bounce);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+@media (max-width: 992px) {
+  .tab-item-btn {
+    white-space: nowrap;
+  }
+}
+
+.tab-item-btn:hover {
+  background-color: rgba(255,255,255,0.4);
+  color: var(--text-main);
+  transform: translateX(3px);
+}
+
+@media (max-width: 992px) {
+  .tab-item-btn:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.tab-item-btn.active {
+  background-color: var(--card-bg);
+  border: var(--sketch-border);
+  color: var(--text-main);
+  box-shadow: 3px 3px 0 var(--text-main);
+  transform: translateX(5px);
+}
+
+@media (max-width: 992px) {
+  .tab-item-btn.active {
+    transform: translateY(-3px);
+  }
+}
+
+/* Right Content Canvas of Notebook */
+.notebook-canvas {
+  padding: 4rem;
+  overflow-y: auto;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .notebook-canvas {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+/* Canvas Ruled background rules */
+.notebook-canvas::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  background-image: linear-gradient(var(--ruled-line) 1px, transparent 1px);
+  background-size: 100% 2rem;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.canvas-content-wrapper {
+  position: relative;
+  z-index: 2;
+}
+
+.library-section-title {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  position: relative;
+}
+
+.library-section-desc {
+  font-size: 1.05rem;
+  margin-bottom: 3rem;
+  max-width: 600px;
+}
+
+.prompts-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.prompt-library-card {
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+}
+
+.prompt-library-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--text-main);
+}
+
+.prompt-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.prompt-card-title-block h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.prompt-tag-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-coral);
+  background-color: rgba(238, 93, 67, 0.08);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  border: 1px dashed rgba(238, 93, 67, 0.2);
+}
+
+/* Code area with copy option */
+.prompt-code-container {
+  position: relative;
+  margin-top: 1.5rem;
+}
+
+.prompt-pre-block {
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--text-main);
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+/* Custom scrollbars inside notebook code blocks */
+.prompt-pre-block::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.prompt-pre-block::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+.prompt-pre-block::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.prompt-pre-block::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+.copy-prompt-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-bounce);
+  z-index: 5;
+}
+
+.copy-prompt-btn:hover {
+  border-color: var(--text-main);
+  color: var(--text-main);
+  transform: scale(1.05);
+}
+
+.copy-prompt-btn svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: currentColor;
+}
+
+.copy-prompt-btn .check-icon {
+  display: none;
+  color: #2F855A;
+}
+
+.copy-prompt-btn.copied {
+  background-color: #EBF7EE;
+  border-color: #A9D3B5;
+}
+
+.copy-prompt-btn.copied .copy-icon {
+  display: none;
+}
+
+.copy-prompt-btn.copied .check-icon {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   12. AI Workflows (Doodle mind-maps)
+   -------------------------------------------------------------------------- */
+.workflows-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 5rem auto;
+}
+
+.workflows-header h2 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.workflows-tabs-menu {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+}
+
+.workflow-menu-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  position: relative;
+  transition: var(--transition-smooth);
+}
+
+.workflow-menu-btn:hover, .workflow-menu-btn.active {
+  color: var(--text-main);
+}
+
+.workflow-menu-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 4px;
+  background-color: var(--accent-olive);
+  border-radius: 2px;
+}
+
+/* Workflow Stage Visual Container */
+.workflow-stage {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: var(--card-bg);
+  border: var(--sketch-border);
+  border-radius: 12px;
+  padding: 4rem;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .workflow-stage {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+.workflow-intro {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.workflow-intro h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.workflow-intro p {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+
+/* Linear step-by-step nodes mapping */
+.workflow-nodes-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 4rem;
+}
+
+@media (max-width: 768px) {
+  .workflow-nodes-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+}
+
+/* SVG Line Connector for nodes */
+.workflow-line-svg {
+  position: absolute;
+  top: 2.5rem;
+  left: 10%;
+  width: 80%;
+  height: 10px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.workflow-line-svg path {
+  stroke: var(--border-color);
+  stroke-width: 3px;
+  stroke-dasharray: 6 6;
+  fill: none;
+  transition: var(--transition-smooth);
+}
+
+.workflow-stage.active-run .workflow-line-svg path {
+  stroke: var(--accent-olive);
+  animation: lineDashFlow 15s linear infinite;
+}
+
+@keyframes lineDashFlow {
+  to {
+    stroke-dashoffset: -120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .workflow-line-svg {
+    display: none;
+  }
+}
+
+/* Individual node blocks */
+.workflow-node-item {
+  width: 25%;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .workflow-node-item {
+    width: 100%;
+  }
+}
+
+.node-icon-circle {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border: 3px solid var(--text-main);
+  background-color: var(--card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  box-shadow: 3px 3px 0 var(--text-main);
+  transition: var(--transition-bounce);
+}
+
+.workflow-node-item:hover .node-icon-circle {
+  transform: scale(1.1);
+  background-color: var(--accent-olive-light);
+  box-shadow: 4px 4px 0 var(--accent-olive);
+}
+
+.node-icon-circle svg {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.node-role-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent-coral);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.node-tool-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.node-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  padding: 0 0.5rem;
+}
+
+/* Big Gold Banner for Result Output */
+.workflow-result-box {
+  background-color: var(--accent-olive-light);
+  border: 2px dashed var(--accent-olive);
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.workflow-result-box .check {
+  font-size: 1.8rem;
+  background-color: var(--accent-olive);
+  color: #FFFFFF;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 2px 2px 0 var(--text-main);
+}
+
+.workflow-result-details h4 {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  margin-bottom: 0.15rem;
+}
+
+.workflow-result-details p {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent-olive-dark);
+}
+
+/* --------------------------------------------------------------------------
+   13. Professional Student Profile (About Me)
+   -------------------------------------------------------------------------- */
+.about-me {
+  background-color: var(--bg-grid);
+  border-top: 1px dashed var(--border-color);
+  border-bottom: 1px dashed var(--border-color);
+  transition: var(--transition-smooth);
+}
+
+.about-me-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .about-me-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}
+
+.about-me-content h2 {
+  font-size: 2.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-me-content p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.social-links-grid {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.social-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  border: var(--sketch-border);
+  background-color: var(--card-bg);
+  color: var(--text-main);
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 3px 3px 0 var(--text-main);
+  transition: var(--transition-bounce);
+}
+
+.social-link-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--accent-olive);
+  background-color: var(--accent-olive-light);
+}
+
+.social-link-btn svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: currentColor;
+}
+
+/* Floating doodles in about section */
+.about-doodles {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   14. Footer
+   -------------------------------------------------------------------------- */
+footer {
+  background-color: var(--bg-color);
+  padding: 5rem 0 3rem 0;
+  border-top: 1px dashed var(--border-color);
+  transition: var(--transition-smooth);
+}
+
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.footer-quote {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-style: italic;
+  font-weight: 600;
+  max-width: 800px;
+  line-height: 1.4;
+  margin-bottom: 2rem;
+  color: var(--text-main);
+  position: relative;
+}
+
+.footer-quote::before, .footer-quote::after {
+  font-size: 4rem;
+  color: var(--accent-olive-marker);
+  position: absolute;
+  z-index: -1;
+  font-family: Georgia, serif;
+}
+
+.footer-quote::before {
+  content: "“";
+  left: -2rem;
+  top: -1.5rem;
+}
+
+.footer-quote::after {
+  content: "”";
+  right: -2rem;
+  bottom: -3.5rem;
+}
+
+.footer-author {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-coral);
+  text-transform: uppercase;
+}
+
+.footer-bottom {
+  border-top: 1px dashed var(--border-color);
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-bottom-links a {
+  color: var(--text-muted);
+}
+
+.footer-bottom-links a:hover {
+  color: var(--text-main);
+}
+
+/* --------------------------------------------------------------------------
+   15. Reveal Scroll Animations using IntersectionObserver
+   -------------------------------------------------------------------------- */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scale pop animation */
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Delay modifiers */
+.delay-1 { transition-delay: 0.15s; }
+.delay-2 { transition-delay: 0.3s; }
+.delay-3 { transition-delay: 0.45s; }
+
+/* ==========================================================================
+   16. Additional Styles & Responsiveness Overrides
+   ========================================================================== */
+
+/* Clickable Tool Directory Links */
+.tool-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 1px solid var(--accent-olive);
+  color: var(--accent-olive);
+  background-color: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition-bounce);
+  text-decoration: none;
+  box-shadow: 2px 2px 0 var(--text-main);
+}
+
+.tool-link-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--text-main);
+  background-color: var(--accent-olive-light);
+}
+
+/* Dynamic Interactive Formula Deck styling */
+.formula-interactive-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.formula-node-tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.formula-node-btn {
+  background-color: var(--card-bg);
+  border: var(--sketch-border);
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 3px 3px 0 var(--text-main);
+  transition: var(--transition-bounce);
+  color: var(--text-main);
+}
+
+.formula-node-btn.active {
+  background-color: var(--accent-olive);
+  color: #FFFFFF;
+  border-color: var(--accent-olive);
+  box-shadow: 3px 3px 0 var(--text-main);
+}
+
+.formula-node-btn .step-num {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.formula-node-btn.active .step-num {
+  color: var(--sticky-yellow);
+}
+
+.formula-node-btn .step-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.formula-step-connector {
+  font-size: 1.25rem;
+  color: var(--border-color);
+  user-select: none;
+}
+
+.formula-details-display {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .formula-details-display {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .formula-node-tabs {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+  .formula-step-connector {
+    display: none;
+  }
+}
+
+.formula-display-left h3 {
+  font-size: 2rem;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.formula-display-left p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.formula-analogy-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-coral);
+  text-transform: uppercase;
+}
+
+.formula-display-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.comparison-bubble {
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+
+.comparison-bubble .bubble-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.comparison-bubble.bad {
+  background-color: #FFF5F5;
+  border-color: #E5A9A9;
+  box-shadow: 3px 3px 0 #E5A9A9;
+}
+
+[data-theme="dark"] .comparison-bubble.bad {
+  background-color: #2D1A1A;
+  border-color: #F0705A;
+  box-shadow: 3px 3px 0 #F0705A;
+}
+
+.comparison-bubble.bad .bubble-tag {
+  color: #D94646;
+}
+
+.comparison-bubble.good {
+  background-color: #F5FAF6;
+  border-color: #A9D3B5;
+  box-shadow: 3px 3px 0 #A9D3B5;
+}
+
+[data-theme="dark"] .comparison-bubble.good {
+  background-color: #1A281E;
+  border-color: #8B9E6A;
+  box-shadow: 3px 3px 0 #8B9E6A;
+}
+
+.comparison-bubble.good .bubble-tag {
+  color: #2F855A;
+}
+
+.comparison-bubble p {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-main);
+}
+
+/* Workflow Simulation styling states */
+.workflow-node-item {
+  transition: var(--transition-bounce);
+}
+
+.workflow-node-item.sim-active {
+  transform: scale(1.05);
+}
+
+.workflow-node-item.sim-active .node-icon-circle {
+  border-color: var(--accent-coral);
+  box-shadow: 0 0 15px var(--accent-coral);
+  background-color: var(--accent-olive-light);
+  animation: simPulse 1.2s infinite ease-in-out;
+}
+
+.workflow-node-item.sim-done .node-icon-circle {
+  border-color: var(--accent-olive);
+  background-color: var(--accent-olive-light);
+  box-shadow: 3px 3px 0 var(--accent-olive);
+}
+
+.workflow-node-item.sim-done::after {
+  content: "✓";
+  position: absolute;
+  top: 1.5rem;
+  right: 25%;
+  background-color: var(--accent-olive);
+  color: #FFFFFF;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--text-main);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
+@keyframes simPulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 rgba(238, 93, 67, 0.4); }
+  50% { transform: scale(1.03); box-shadow: 0 0 15px rgba(238, 93, 67, 0.7); }
+  100% { transform: scale(1); box-shadow: 0 0 0 rgba(238, 93, 67, 0.4); }
+}
+
+.workflow-result-box {
+  transition: var(--transition-bounce);
+}
+
+.workflow-result-box.sim-success {
+  border-color: var(--accent-olive);
+  background-color: var(--accent-olive-marker);
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(85, 107, 47, 0.3);
+}
+
+/* Floating animation for Books */
+@keyframes floatBook1 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-3px, -6px) rotate(-3deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes floatBook2 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(3px, -5px) rotate(4deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes floatBook3 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(1px, -7px) rotate(-2deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.floating-book {
+  transform-origin: center;
+}
+
+/* Mobile Responsiveness Fixing Misalignments */
+@media (max-width: 992px) {
+  .hero-book-container {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    background-size: 16px 16px;
+  }
+  
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+  
+  .hero-sub {
+    font-size: 1.25rem;
+  }
+  
+  .notebook-cover-visual {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 32 / 44;
+    height: auto;
+  }
+  
+  .notebook-canvas {
+    padding: 2rem 1.2rem;
+  }
+  
+  .notebook-tabs {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+  
+  .tab-item-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .prompt-library-card {
+    padding: 1.5rem;
+  }
+  
+  .prompt-pre-block {
+    padding: 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .workflow-stage {
+    padding: 2.5rem 1.2rem;
+  }
+  
+  .about-me-grid {
+    gap: 2.5rem;
+  }
+  
+  .about-doodles svg {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 2.4rem;
+  }
+  
+  .hero-btns {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .hero-btns .btn {
+    width: 100%;
+  }
+  
+  .student-id-card {
+    max-width: 100%;
+  }
+}
