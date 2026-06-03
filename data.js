@@ -1,16 +1,11 @@
-// PromptVault Data Registry
-// This structured data serves as the single source of truth for prompts, tools, and workflows.
-// It is designed to be easily accessible globally for Vanilla JS, and simple to export for future React migrations.
-
 const PromptVaultData = {
-  // 1. AI TOOLS DIRECTORY DATA
   tools: [
     {
       id: "claude",
       category: "coding",
       name: "Claude 3.5 Sonnet",
       developer: "Anthropic",
-      logo: "claude", // Refers to SVG icon key
+      logo: "claude", 
       bestFor: ["Advanced Coding", "System Architecture", "Refactoring & Debugging", "Complex Problem Solving"],
       description: "Exceptional at understanding complex software requirements, generating elegant clean code, and tracking broad system context.",
       utility: "Code & Logic",
@@ -163,7 +158,6 @@ const PromptVaultData = {
     }
   ],
 
-  // 2. STUDENT PROMPT LIBRARY DATA (9 Categories, 3 high-value prompts each = 27 Prompts)
   prompts: {
     study: [
       {
